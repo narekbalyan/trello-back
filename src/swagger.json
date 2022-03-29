@@ -1,0 +1,1452 @@
+{
+    "definition": {
+        "info": {
+            "title": "Trello API",
+            "description": "Please first pass registration and login than do your requests",
+            "version": "1.0.0"
+        },
+        "schemes": ["http", "https"],
+        "host": "epam-school-team1.herokuapp.com",
+        "basePath": "/api",
+        "paths": {
+            "/register": {
+                "post": {
+                    "tags": [
+                        {
+                            "name": "registration"
+                        }
+                    ],
+                    "description": "Please register for further operations",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "user credentials",
+                            "required": true,
+                            "schema": {
+                                "properties": {
+                                    "user_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/login": {
+                "post": {
+                    "tags": [
+                        {
+                            "name": "login"
+                        }
+                    ],
+                    "description": "Please login with your login and password",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "login credentials",
+                            "required": true,
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/logout": {
+                "post": {
+                    "tags": [
+                        {
+                            "name": "logout"
+                        }
+                    ],
+                    "description": "Logout from your account",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/users": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "users"
+                        }
+                    ],
+                    "description": "Gets all users",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {  
+                        "200": {
+                            "description": "Gets array of users",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "user_name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "created": {
+                                            "type": "string"
+                                        },
+                                        "updated": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }    
+                    }
+                }
+            },
+            "/users/{id}": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "users"
+                        }
+                    ],
+                    "description": "Gets user by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The user id that need to get",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets user object",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "user_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "created": {
+                                        "type": "string"
+                                    },
+                                    "updated": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "users"
+                        }
+                    ],
+                    "description": "Update user by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The user id that need to be edited",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "user info",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "oldPassword": {
+                                        "type": "string"
+                                    },
+                                    "newPassword": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        } 
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        {
+                            "name": "users"
+                        }
+                    ],
+                    "description": "Delete user by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The user id that need to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/users/invite": {
+                "post": {
+                    "tags": [
+                        {
+                            "name": "users"
+                        }
+                    ],
+                    "description": "Invite user to board",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "board_id": {
+                                        "type":"string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "users/ordering/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "board ordering"
+                        }
+                    ],
+                    "description": "Order boards",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The user id that you need to edit",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "ordered boards",
+                            "required": true,
+                            "schema": {
+                                "properties": {
+                                    "boards": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/boards": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Get all boards",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {  
+                        "200": {
+                            "description": "Gets array of board's names and ids",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "board_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }    
+                    }
+                },
+                "post": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Create board",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type":"string"
+                                    },  
+                                    "user_id": {
+                                        "type":"string"
+                                    },
+                                    "owner_id": {
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/boards/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Edit board by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The board id that need to be edited",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "board info",
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type":"string"
+                                    },  
+                                    "user_id": {
+                                        "type":"string"
+                                    },
+                                    "owner_id": {
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Delete board by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The board id that need to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "get": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Get board by id",
+                    "parameters":[
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The board id that need to get",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets array of lists and cards, board_id, user_id and ordered lists",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "board_id": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "members_count": {
+                                        "type": "number"
+                                    },
+                                    "lists": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "created": {
+                                                    "type": "string"
+                                                },
+                                                "updated": {
+                                                    "type": "string"
+                                                },
+                                                "cards": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cards": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "estimate": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "listId": {
+                                                    "type": "string"
+                                                },
+                                                "created": {
+                                                    "type": "string"
+                                                },
+                                                "updated": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "ordered_list": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }  
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/boards/ordering/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "list ordering"
+                        }
+                    ],
+                    "description": "Order lists",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The board id that you need to edit",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "ordered lists",
+                            "required": true,
+                            "schema": {
+                                "properties": {
+                                    "lists": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/boards/leave": {
+                "post": {
+                    "tags": [
+                        {
+                            "name": "boards"
+                        }
+                    ],
+                    "description": "Leave from board",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "board info",
+                            "schema": {
+                                "properties": {
+                                    "board_id": {
+                                        "type":"string"
+                                    },  
+                                    "owner_id": {
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/lists": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "lists"
+                        }
+                    ],
+                    "description": "Get all lists",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets all lists",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "created": {
+                                            "type": "string"
+                                        },
+                                        "updated": {
+                                            "type": "string"
+                                        },
+                                        "cards": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "post": {
+                    "tags": [
+                        {
+                            "name": "lists"
+                        }
+                    ],
+                    "description": "Create list",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "board_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/lists/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "lists"
+                        }
+                    ],
+                    "description": "Edit list by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The list id that need to be edited",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "list info",
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        {
+                            "name": "lists"
+                        }
+                    ],
+                    "description": "Delete list by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The list id that need to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "get": {
+                    "tags": [
+                        {
+                            "name": "lists"
+                        }
+                    ],
+                    "description": "Get list by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The list id that need to get",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets a list object",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "created": {
+                                        "type": "string"
+                                    },
+                                    "updated": {
+                                        "type": "string"
+                                    },
+                                    "cards": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/lists/ordering/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "card ordering"
+                        }
+                    ],
+                    "description": "Order cards",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The list id that you need to edit",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "ordered cards",
+                            "required": true,
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cards": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "list_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/cards": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "cards"
+                        }
+                    ],
+                    "description": "Get all cards",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets all cards",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "estimate": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "created": {
+                                            "type": "string"
+                                        },
+                                        "updated": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "post": {
+                    "tags": [
+                        {
+                            "name": "cards"
+                        }
+                    ],
+                    "description": "Get all cards",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "list_id": {
+                                        "type": "string"
+                                    },
+                                    "board_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/cards/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "cards"
+                        }
+                    ],
+                    "description": "Edit card by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The card id that need to be edited",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "list_id": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "estimate": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        {
+                            "name": "cards"
+                        }
+                    ],
+                    "description": "Delete card by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The card id that need to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "get": {
+                    "tags": [
+                        {
+                            "name": "cards"
+                        }
+                    ],
+                    "description": "Get card by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The card id that need to get",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "The card object",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "estimate": {
+                                        "type": "number"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "created": {
+                                        "type": "string"
+                                    },
+                                    "updated": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/comments": {
+                "get": {
+                    "tags": [
+                        {
+                            "name": "comments"
+                        }
+                    ],
+                    "description": "Get all comments",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets all comments",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "context": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "created": {
+                                            "type": "string"
+                                        },
+                                        "updated": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "post": {
+                    "tags": [
+                        {
+                            "name": "comments"
+                        }
+                    ],
+                    "description": "Get all comments",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "context": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "board_id": {
+                                        "type": "string"
+                                    },
+                                    "list_id": {
+                                        "type": "string"
+                                    },
+                                    "card_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            },
+            "/comments/{id}": {
+                "patch": {
+                    "tags": [
+                        {
+                            "name": "comments"
+                        }
+                    ],
+                    "description": "Edit comment by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The comment id that need to be edited",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "context": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        {
+                            "name": "comments"
+                        }
+                    ],
+                    "description": "Delete comment by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The comment id that need to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                },
+                "get": {
+                    "tags": [
+                        {
+                            "name": "comments"
+                        }
+                    ],
+                    "description": "Delete comment by id",
+                    "parameters": [
+                        {
+                            "in": "header",
+                            "name": "Authorization",
+                            "required": true
+                        },
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "The comment id that need to get",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Gets comment object",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "context": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "created": {
+                                        "type": "string"
+                                    },
+                                    "updated": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Server error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "apis": ["./src/routes/boards.ts"]
+}

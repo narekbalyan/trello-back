@@ -1,0 +1,28 @@
+version: '2'
+
+services: 
+    app:
+        env_file:
+            - .env
+        build: 
+            context: .
+        restart: always
+        ports:
+            - "3000:3000"
+        container_name: app
+        depends_on: 
+            - db
+        volumes:
+            - ./src/:/app/src/
+    db:
+        image: "postgres"
+        volumes:
+            - data-db:/var/lib/postgresql/data/
+        ports: 
+            - "5432:5432"
+        environment: 
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=Qwerty1177!
+            - POSTGRES_DB=team1
+volumes:
+    data-db:
